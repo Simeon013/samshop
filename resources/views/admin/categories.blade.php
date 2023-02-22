@@ -2,6 +2,8 @@
     Listes des categories - SamShop
 @endsection
 
+{!! Form::hidden('',$increment=1) !!}
+
 @extends('layout.appadmin')
 
 @section('contenu')
@@ -21,7 +23,24 @@
                             <span class="tf-icons bx bx-edit-alt"></span>&nbsp; Ajouter une catégorie
                         </a>
                     </small>
-                  </div>
+                </div>
+                <div class="card-body">
+                      @if (Session::has('status'))
+                            <div class="alert alert-success">
+                                {{Session::get('status')}}
+                            </div>
+                      @endif
+
+                      @if (count($errors)>0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                      @endif
+                </div>
                 <div class="table-responsive text-nowrap">
                   <table class="table table-hover" id="order-listing">
                     <thead>
@@ -32,57 +51,28 @@
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                      <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1</strong></td>
-                        <td>Vetements</td>
-                        {{-- <td>
-                          <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Lilian Fuller"
-                            >
-                              <img src="backoffice/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Sophia Wilkerson"
-                            >
-                              <img src="backoffice/assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Christina Parker"
-                            >
-                              <img src="backoffice/assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                          </ul>
-                        </td> --}}
-                        {{-- <td><span class="badge bg-label-primary me-1">Active</span></td> --}}
-                        <div class="dropdown">
-                            <td>
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);">
-                                        <i class="bx bx-edit-alt me-1"></i> Editer
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0);">
-                                        <i class="bx bx-trash me-1"></i> Suprimer
-                                    </a>
-                                </div>
-                            </td>
-                        </div>
-                      </tr>
+                        @foreach ($categories as $category)
+                        <tr>
+                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$increment}}</strong></td>
+                            <td>{{$category->category_name}}</td>
+                            <div class="dropdown">
+                                <td>
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" id="edit" onclick="window.location ='{{URL('/editcategory/'.$category->id)}}'">
+                                            <i class="bx bx-edit-alt me-1"></i> Editer
+                                        </a>
+                                        <a class="dropdown-item" href="{{('/deletecategory/'.$category->id)}}" id="delete">
+                                            <i class="bx bx-trash me-1"></i> Suprimer
+                                        </a>
+                                    </div>
+                                </td>
+                            </div>
+                          </tr>
+                          {!! Form::hidden('', $increment= $increment+1) !!}
+                        @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -98,4 +88,15 @@
 
 @section('scripts')
     <script src="backoffice/assets/vendor/js/data-table.js"></script>
+    {{-- <script>
+        $(document).on("click", "#delete", function(e){
+            e.preventDefault();
+            var link = $(this).attr("href");
+            bootbox.confirm("Voullez-vous vraiment supprimer ce élement ?" , function(confirmed){
+                if(confirmed){
+                    window.location.href = link;
+                };
+            });
+        });
+    </script> --}}
 @endsection

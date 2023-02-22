@@ -33,6 +33,9 @@ Route::get('/admin', 'App\Http\Controllers\AdminController@dashboard');
 Route::get('/addcategory', 'App\Http\Controllers\CategoryController@addcategory');
 Route::post('/savecategory', 'App\Http\Controllers\CategoryController@savecategory');
 Route::get('/categories', 'App\Http\Controllers\CategoryController@categories');
+Route::get('/editcategory/{id}' , 'App\Http\Controllers\CategoryController@editcategory');
+Route::post('/updatecategory' , 'App\Http\Controllers\CategoryController@updatecategory');
+Route::get('/deletecategory/{id}' , 'App\Http\Controllers\CategoryController@deletecategory');
 
 Route::get('/addproduct', 'App\Http\Controllers\ProductController@addproduct');
 Route::post('/saveproduct', 'App\Http\Controllers\ProductController@saveproduct');
