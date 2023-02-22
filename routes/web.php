@@ -37,9 +37,14 @@ Route::get('/editcategory/{id}' , 'App\Http\Controllers\CategoryController@editc
 Route::post('/updatecategory' , 'App\Http\Controllers\CategoryController@updatecategory');
 Route::get('/deletecategory/{id}' , 'App\Http\Controllers\CategoryController@deletecategory');
 
-Route::get('/addproduct', 'App\Http\Controllers\ProductController@addproduct');
-Route::post('/saveproduct', 'App\Http\Controllers\ProductController@saveproduct');
-Route::get('/products', 'App\Http\Controllers\ProductController@products');
+Route::get('/addproduct' , 'App\Http\Controllers\ProductController@addproduct');
+Route::post('/saveproduct' , 'App\Http\Controllers\ProductController@saveproduct');
+Route::get('/products' , 'App\Http\Controllers\ProductController@products');
+Route::get('/editproduct/{id}' , 'App\Http\Controllers\ProductController@editproduct');
+Route::post('/updateproduct' , 'App\Http\Controllers\ProductController@updateproduct');
+Route::get('/deleteproduct/{id}' , 'App\Http\Controllers\ProductController@deleteproduct');
+Route::get('/activerproduct/{id}' , 'App\Http\Controllers\ProductController@activerproduct');
+Route::get('/desactiverproduct/{id}' , 'App\Http\Controllers\ProductController@desactiverproduct');
 
 Route::get('/addslider', 'App\Http\Controllers\SliderController@addslider');
 Route::post('/saveslider', 'App\Http\Controllers\SliderController@saveslider');
