@@ -88,15 +88,4 @@
 
 @section('scripts')
     <script src="backoffice/assets/vendor/js/data-table.js"></script>
-    {{-- <script>
-        $(document).on("click", "#delete", function(e){
-            e.preventDefault();
-            var link = $(this).attr("href");
-            bootbox.confirm("Voullez-vous vraiment supprimer ce élement ?" , function(confirmed){
-                if(confirmed){
-                    window.location.href = link;
-                };
-            });
-        });
-    </script> --}}
 @endsection
