@@ -38,7 +38,7 @@
 
 					<!-- Logo desktop -->
 					<a href="{{URL::to('/')}}" class="logo">
-						<img src="{{asset('frontend/imagesicons/logo-01.png')}}" alt="IMG-LOGO">
+						<img src="{{asset('frontend/images/icons/logo-01.png')}}" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -84,7 +84,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="index.html"><img src="{{asset('frontend/imagesicons/logo-01.png')}}" alt="IMG-LOGO"></a>
+				<a href="index.html"><img src="{{asset('frontend/images/icons/logo-01.png')}}" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -175,7 +175,7 @@
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
 			<div class="container-search-header">
 				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="{{asset('frontend/imagesicons/icon-close2.png')}}" alt="CLOSE">
+					<img src="{{asset('frontend/images/icons/icon-close2.png')}}" alt="CLOSE">
 				</button>
 
 				<form class="wrap-search-header flex-w p-l-15">
@@ -207,7 +207,7 @@
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="{{asset('frontend/imagesitem-cart-01.jpg')}}" alt="IMG">
+							<img src="{{asset('frontend/images/item-cart-01.jpg')}}" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -223,7 +223,7 @@
 
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="{{asset('frontend/imagesitem-cart-02.jpg')}}" alt="IMG">
+							<img src="{{asset('frontend/images/item-cart-02.jpg')}}" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
