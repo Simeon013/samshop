@@ -137,25 +137,11 @@
 						All Products
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						Women
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-						Men
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-						Bag
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-						Shoes
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-						Watches
-					</button>
+					@foreach ($categories as $category)
+                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{$category->category_name}}">
+                            {{$category->category_name}}
+                        </button>
+                    @endforeach
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
@@ -375,7 +361,7 @@
 
 			<div class="row isotope-grid">
 				@foreach ($products as $product)
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->product_category}}">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
