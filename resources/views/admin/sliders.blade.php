@@ -2,6 +2,8 @@
     Listes des sliders - SamShop
 @endsection
 
+{!! Form::hidden('',$increment=1) !!}
+
 @extends('layout.appadmin')
 
 @section('contenu')
@@ -17,11 +19,28 @@
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5 class="mb-0">Liste des sliders</h5>
                     <small class="text-muted float-end">
-                        <a href="{{URL::to('/addcategory')}}" class="btn rounded-pill btn-outline-primary">
+                        <a href="{{URL::to('/addslider')}}" class="btn rounded-pill btn-outline-primary">
                             <span class="tf-icons bx bx-edit-alt"></span>&nbsp; Ajouter un slider
                         </a>
                     </small>
-                  </div>
+                </div>
+                <div class="card-body">
+                    @if (Session::has('status'))
+                            <div class="alert alert-success">
+                                {{Session::get('status')}}
+                            </div>
+                    @endif
+
+                    @if (count($errors)>0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                    @endif
+                </div>
                 <div class="table-responsive text-nowrap">
                   <table class="table table-hover" id="order-listing">
                     <thead>
@@ -34,33 +53,50 @@
                         <th>Actions</th>
                       </tr>
                     </thead>
+                    @foreach ($sliders as $slider)
                     <tbody class="table-border-bottom-0">
-                      <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1</strong></td>
-                        <td><img src="backoffice/assets/img/avatars/7.png" alt="" class="rounded-circle"></td>
-                        <td>Premiere description</td>
-                        <td>Premiere description</td>
-                        <td><span class="badge rounded-pill bg-label-success me-1">Active</span></td>
-                        <div class="dropdown">
-                            <td>
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);">
-                                        <i class="bx bx-edit-alt me-1"></i> Editer
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0);">
-                                        <i class="bx bx-trash me-1"></i> Suprimer
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0);">
-                                        <i class="bx bx-check me-1"></i> Activer
-                                    </a>
-                                </div>
-                            </td>
-                        </div>
-                      </tr>
-                    </tbody>
+                        <tr>
+                          <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$increment}}</strong></td>
+                          <td>
+                              <img src="/storage/slider_images/{{$slider->slider_image}}" class=" rounded-circle avatar pull-up" data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="{{$slider->slider_name}}">
+                          </td>
+                          <td>{{$slider->description1}}</td>
+                          <td>{{$slider->description2}}</td>
+                          <td>
+                              @if ($slider->status)
+                                  <span class="badge bg-label-success rounded-pill me-1">Activé</span>
+                              @else
+                                  <span class="badge bg-label-warning rounded-pill me-1">Desactivé</span>
+                              @endif
+                          </td>
+                          <div class="dropdown">
+                              <td>
+                                  <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                  <i class="bx bx-dots-vertical-rounded"></i>
+                                  </button>
+                                  <div class="dropdown-menu">
+                                      <a class="dropdown-item" onclick="window.location ='{{URL('/editslider/'.$slider->id)}}'">
+                                          <i class="bx bx-edit-alt me-1"></i> Editer
+                                      </a>
+                                      <a class="dropdown-item" href="{{('/deleteslider/'.$slider->id)}}" id="delete">
+                                          <i class="bx bx-trash me-1"></i> Suprimer
+                                      </a>
+                                      @if ($slider->status == 1)
+                                      <a class="dropdown-item" onclick="window.location ='{{URL('/desactiverslider/'.$slider->id)}}'">
+                                          <i class="bx bx-x me-1"></i> Désactiver
+                                      </a>
+                                      @else
+                                      <a class="dropdown-item" onclick="window.location ='{{URL('/activerslider/'.$slider->id)}}'">
+                                          <i class="bx bx-check me-1"></i> Activer
+                                      </a>
+                                      @endif
+                                  </div>
+                              </td>
+                          </div>
+                        </tr>
+                        {!! Form::hidden('', $increment= $increment+1) !!}
+                      </tbody>
+                    @endforeach
                   </table>
                 </div>
               </div>
