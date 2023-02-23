@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +22,12 @@ Route::get('/', 'App\Http\Controllers\ClientController@home');
 Route::get('/apropos', 'App\Http\Controllers\ClientController@about');
 Route::get('/contact', 'App\Http\Controllers\ClientController@contact');
 Route::get('/shop', 'App\Http\Controllers\ClientController@shop');
-Route::get('/panier', 'App\Http\Controllers\ClientController@cart');
 Route::get('/connexion', 'App\Http\Controllers\ClientController@client_login');
 Route::get('/deconnexion', 'App\Http\Controllers\ClientController@client_signup');
+Route::get('/panier', 'App\Http\Controllers\ClientController@cart');
+Route::get('/ajouter_au_panier/{id}','App\Http\Controllers\ClientController@add_to_cart');
+Route::get('/modifier_qty/{id} ', 'App\Http\Controllers\ClientController@update_cart');
+Route::get('/retirer_produit/{id}', 'App\Http\Controllers\ClientController@remove_to_cart');
 
 Route::get('/admin', 'App\Http\Controllers\AdminController@dashboard');
 

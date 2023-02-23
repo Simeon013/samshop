@@ -265,6 +265,9 @@
                                         <img class="icon-heart1 dis-block trans-04" src="frontend/images/icons/icon-heart-01.png" alt="ICON">
                                         <img class="icon-heart2 dis-block trans-04 ab-t-l" src="frontend/images/icons/icon-heart-02.png" alt="ICON">
                                     </a>
+                                    <a href="/ajouter_au_panier/{{$product->id}}" class="icon-heart1 dis-block cl2 hov-cl1 trans-04 p-l-22">
+                                        <i class="zmdi zmdi-shopping-cart js-addcart-detail" ></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
