@@ -238,11 +238,12 @@
 
 			<div class="row isotope-grid">
                 @foreach ($products as $product)
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->product_category}}">
+                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category->category_name}}">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="/storage/product_images/{{$product->product_image}}" alt="IMG-PRODUCT">
+                                {{-- <img src="/storage/product_images/{{$product->product_image}}" alt="IMG-PRODUCT"> --}}
+                                <img src={{$product->product_image}} alt="IMG-PRODUCT">
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Quick View

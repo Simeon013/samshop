@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     public function addproduct(){
-        $categories = Category::All()->pluck('category_name', 'category_name');
+        $categories = Category::All();
         return view('admin.addproduct')->with('categories', $categories);
     }
 
     public function saveproduct(Request $request){
         $this->validate($request, [ 'product_name' => 'required|unique:products',
                                     'product_price' => 'required',
-                                    'product_category' => 'required',
+                                    'category_id' => 'required',
                                     'product_image' => 'image|nullable|max:1999']
                                 );
 
@@ -41,28 +41,33 @@ class ProductController extends Controller
         $product = new Product();
         $product->product_name = $request->input('product_name');
         $product->product_price = $request->input('product_price');
-        $product->product_category = $request->input('product_category');
+        $product->category_id = $request->input('category_id');
         $product->product_image = $fileNameToStore;
         $product->status = 1;
 
         $product->save();
 
-        return redirect('/addproduct')->with('status', 'Le produit ' . $product->product_name . ' a été ajouté avec succès.');
+        return redirect(route('addproduct'))->with('status', 'Le produit ' . $product->product_name . ' a été ajouté avec succès.');
 
         // print($request->input('product_category'));
     }
 
     public function products(){
 
-        $products = Product::get();
-        return view('admin.products')->with('products', $products);
+        // $category = Category::get();
+        // // $products = Product::get();
+        // $products = $category->products()->get();
+        // return view('admin.products')->with('products', $products);
+
+        $products = Product::with('category')->get();
+        return view('admin.products' , compact('products'));
     }
 
     public function editproduct($id){
+        
+        $product = Product::findOrFail($id);
 
-        $product = Product::find($id);
-
-        $categories = Category::All()->pluck('category_name', 'category_name');
+        $categories = Category::All();
 
         return view('admin.editproduct')->with('categories', $categories)->with('product', $product);
     }
@@ -71,14 +76,14 @@ class ProductController extends Controller
 
         $this->validate($request, [ 'product_name' => 'required',
                                     'product_price' => 'required',
-                                    'product_category' => 'required',
+                                    'category_id' => 'required',
                                     'product_image' => 'image|nullable|max:1999']
                                 );
 
-        $product = Product::find($request->input('id'));
+        $product = Product::findOrFail($request->input('id'));
         $product->product_name = $request->input('product_name');
         $product->product_price = $request->input('product_price');
-        $product->product_category = $request->input('product_category');
+        $product->category_id = $request->input('category_id');
 
         if($request->hasFile('product_image')){
             //1 - get file name with extension
@@ -101,13 +106,13 @@ class ProductController extends Controller
         }
         $product->update();
 
-        return redirect('/products')->with('status', 'Le produit ' . $product->product_name . ' a été modifié avec succès.');
+        return redirect(route('products'))->with('status', 'Le produit ' . $product->product_name . ' a été modifié avec succès.');
 
     }
 
     public function deleteproduct($id){
 
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
 
         if($product->product_image != 'noimage.jpg'){
             Storage::delete('public/product_images/'.$product->product_image);
@@ -115,26 +120,26 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect('/products')->with('status', 'Le produit ' . $product->product_name . ' a été supprimé avec succès.');
+        return redirect(route('products'))->with('status', 'Le produit ' . $product->product_name . ' a été supprimé avec succès.');
     }
 
     public function activerproduct($id){
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
 
         $product->status = 1;
 
         $product->update();
 
-        return redirect('/products')->with('status', 'Le produit ' . $product->product_name . ' a été activé avec succès.');
+        return redirect(route('products'))->with('status', 'Le produit ' . $product->product_name . ' a été activé avec succès.');
     }
 
     public function desactiverproduct($id){
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
 
         $product->status = 0;
 
         $product->update();
 
-        return redirect('/products')->with('status', 'Le produit ' . $product->product_name . ' a été désactivé avec succès.');
+        return redirect(route('products'))->with('status', 'Le produit ' . $product->product_name . ' a été désactivé avec succès.');
     }
 }

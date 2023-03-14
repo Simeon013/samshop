@@ -60,8 +60,14 @@
                         <div class="row mb-3">
                           {!! Form::label('', 'Catégorie', ['for' => 'pcategory' , 'class' => 'col-sm-2 col-form-label']) !!}
                           <div class="col-sm-10">
-                            {!! Form::select('product_category', $categories, null, ['class' => 'form-control' , 'id' => 'pcategory' , 'placeholder' => 'Selectionner catégorie']) !!}
-                          </div>
+                            {{-- {!! Form::select('category_id', $categories, null, ['class' => 'form-control' , 'id' => 'pcategory' , 'placeholder' => 'Selectionner catégorie']) !!} --}}
+                         <select name="category_id" id="" class="form-control">
+                            <option value="">Selectionner catégorie</option>
+                            @foreach ($categories as $category)
+                                <option value="{{$category->id}}">{{$category->category_name}}</option>
+                            @endforeach
+                         </select>
+                        </div>
                         </div>
                         <div class="row mb-3">
                           {!! Form::label('', 'Image', ['for' => 'pimage' , 'class' => 'col-sm-2 col-form-label']) !!}

@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
         $categorie->save();
 
-        return redirect('/addcategory')->with('status', 'La catégorie ' . $categorie->category_name . ' a été ajoutée avec succès. ');
+        return redirect(route('addcategory'))->with('status', 'La catégorie ' . $categorie->category_name . ' a été ajoutée avec succès. ');
     }
 
     public function categories(){
@@ -30,7 +30,7 @@ class CategoryController extends Controller
     }
 
     public function editcategory($id){
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
 
         return view('admin.editcategory')->with('category', $category);
     }
@@ -39,21 +39,21 @@ class CategoryController extends Controller
 
         $this->validate($request, ['category_name' => 'required|unique:categories']);
 
-        $categorie = Category::find($request->input('id'));
+        $categorie = Category::findOrFail($request->input('id'));
 
         $categorie->category_name = $request->input('category_name');
 
         $categorie->update();
 
-        return redirect('/categories')->with('status', 'La catégorie ' . $categorie->category_name . ' a été modifiée avec succès. ');
+        return redirect(route('categories'))->with('status', 'La catégorie ' . $categorie->category_name . ' a été modifiée avec succès. ');
     }
 
     public function deletecategory($id){
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
 
         $category->delete();
 
-        return redirect('/categories')->with('status', 'La catégorie ' . $category->category_name . ' a été supprimée avec succès. ');
+        return redirect(route('categories'))->with('status', 'La catégorie ' . $category->category_name . ' a été supprimée avec succès. ');
     }
 
 }

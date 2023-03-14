@@ -6,7 +6,7 @@
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar">
-						samshop@gmail.com
+						Free shipping for standard order over $100
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
@@ -22,11 +22,11 @@
 							FR
 						</a> --}}
 
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-							samshop@gmail.com
+                        <a href="mailto:karlsnow000@gmail.com" class="flex-c-m trans-04 p-lr-25">
+							karlsnow000@gmail.com
 						</a>
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
+						<a href="tel:+22990431956" class="flex-c-m trans-04 p-lr-25">
 							+22990431956
 						</a>
 					</div>
@@ -52,7 +52,7 @@
 								<a href="{{URL::to('/shop')}}">Shop</a>
 							</li>
 
-							<li class="">
+							<li>
 								<a href="{{URL::to('/apropos')}}">A propos</a>
 							</li>
 
@@ -64,17 +64,38 @@
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+						{{-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
-						</div>
+						</div> --}}
 
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify={{Session::has('cart') ? Session::get('cart')->totalQty:0}}>
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
-						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+						{{-- <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
 							<i class="zmdi zmdi-favorite-outline"></i>
-						</a>
+						</a> --}}
+
+                        {{-- <div class="dropdown">
+                            <button onclick="myFunction()" class="dropbtn">
+                                Compte
+                            </button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#">Link 1</a>
+                                <a href="#">Link 2</a>
+                                <a href="#">Link 3</a>
+                            </div>
+                        </div> --}}
+
+
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 dropdown" >
+							<i onclick="myFunction()" class="dropbtn zmdi zmdi-account"></i>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#">Link 1</a>
+                                <a href="#">Link 2</a>
+                                <a href="#">Link 3</a>
+                            </div>
+						</div>
 					</div>
 				</nav>
 			</div>
@@ -84,16 +105,16 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="index.html"><img src="{{asset('frontend/images/icons/logo-01.png')}}" alt="IMG-LOGO"></a>
+				<a href="{{URL::to('/')}}"><img src="{{asset('frontend/images/icons/logo-01.png')}}" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+				{{-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
-				</div>
+				</div> --}}
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify={{Session::has('cart') ? Session::get('cart')->totalQty:0}}>
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
@@ -122,7 +143,7 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
+						{{-- <a href="#" class="flex-c-m p-lr-10 trans-04">
 							Help & FAQs
 						</a>
 
@@ -136,6 +157,12 @@
 
 						<a href="#" class="flex-c-m p-lr-10 trans-04">
 							USD
+						</a> --}}
+                        <a href="mailto:karlsnow000@gmail.com" class="flex-c-m p-lr-10 trans-04">
+							karlsnow000@gmail.com
+						</a>
+                        <a href="tel:+22990431956" class="flex-c-m p-lr-10 trans-04">
+							+22990431956
 						</a>
 					</div>
 				</li>
@@ -143,30 +170,26 @@
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Home</a>
-					<span class="arrow-main-menu-m">
+					<a href="{{URL::to('/')}}">Home</a>
+					{{-- <span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
+					</span> --}}
 				</li>
 
 				<li>
-					<a href="product.html">Shop</a>
+					<a href="{{URL::to('/shop')}}">Shop</a>
 				</li>
 
-				<li>
+				{{-- <li>
 					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+				</li> --}}
+
+				<li>
+					<a href="{{URL::to('/apropos')}}">A propos</a>
 				</li>
 
 				<li>
-					<a href="blog.html">Blog</a>
-				</li>
-
-				<li>
-					<a href="about.html">About</a>
-				</li>
-
-				<li>
-					<a href="contact.html">Contact</a>
+					<a href="{{URL::to('/contact')}}">Contact</a>
 				</li>
 			</ul>
 		</div>
@@ -205,8 +228,8 @@
 
 			<div class="header-cart-content flex-w js-pscroll">
                 @if (Session::has('cart'))
-				<ul class="header-cart-wrapitem w-full">
-                        @foreach ($products as $product)
+                    <ul class="header-cart-wrapitem w-full">
+                        @foreach ($cart_products as $product)
                             <li class="header-cart-item flex-w flex-t m-b-12">
                                 <div class="header-cart-item-img">
                                     <img src="/storage/product_images/{{$product['product_image']}}" alt="IMG">
@@ -240,7 +263,7 @@
                             </a>
                         </div>
                     </div>
-                    @endif
-			</div>
+                @endif
+            </div>
 		</div>
 	</div>

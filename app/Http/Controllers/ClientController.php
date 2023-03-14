@@ -13,16 +13,20 @@ use Illuminate\Support\Facades\Redirect;
 class ClientController extends Controller
 {
     public function home(){
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
         $sliders = Slider::where('status', 1)->get();
         $categories = Category::get();
         $products = Product::where('status' , 1)->get();
-        return view('client.home')->with('sliders', $sliders)->with('categories', $categories)->with('products', $products);
+        return view('client.home', ['cart_products' => $cart->items])->with('sliders', $sliders)->with('categories', $categories)->with('products', $products);
     }
 
     public function shop(){
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
         $categories = Category::get();
         $products = Product::where('status' , 1)->get();
-        return view('client.shop')->with('categories', $categories)->with('products',$products);
+        return view('client.shop', ['cart_products' => $cart->items])->with('categories', $categories)->with('products',$products);
     }
 
     public function cart(){
@@ -32,11 +36,11 @@ class ClientController extends Controller
 
         $oldCart = Session::has('cart')? Session::get('cart'):null;
         $cart = new Cart($oldCart);
-        return view('client.cart', ['products' => $cart->items]);
+        return view('client.cart', ['cart_products' => $cart->items]);
     }
 
     public function add_to_cart($id){
-        $product = Product::find($id);
+        $product = Product::findOrfail($id);
 
         $oldCart = Session::has('cart')? Session::get('cart'):null;
         $cart = new Cart($oldCart);
@@ -44,7 +48,7 @@ class ClientController extends Controller
         Session::put('cart', $cart);
 
         //dd(Session::get('cart'));
-        return redirect('/shop');
+        return redirect( route('shop') );
     }
 
     public function update_cart(Request $request, $id){
@@ -55,7 +59,7 @@ class ClientController extends Controller
         Session::put('cart', $cart);
 
         //dd(Session::get('cart'));
-        return redirect('/panier');
+        return redirect( route('cart') );
     }
 
     public function remove_to_cart($id){
@@ -71,7 +75,7 @@ class ClientController extends Controller
         }
 
         //dd(Session::get('cart'));
-        return redirect::to('/panier');
+        return redirect::to(route('cart'));
     }
 
     public function about (){

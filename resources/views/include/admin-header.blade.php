@@ -74,7 +74,7 @@
             <ul class="menu-inner py-1">
               <!-- Dashboard -->
               <li class="menu-item">
-                <a href="{{URL::to('/dashboard')}}" class="menu-link">
+                <a href="{{route('dashboard')}}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-home-circle"></i>
                   <div data-i18n="Analytics">Dashboard</div>
                 </a>
@@ -126,17 +126,17 @@
                 </a>
                 <ul class="menu-sub">
                   <li class="menu-item">
-                    <a href="{{URL::to('/addcategory')}}" class="menu-link">
+                    <a href="{{route('addcategory')}}" class="menu-link">
                       <div data-i18n="Ajouter catégorie">Ajouter catégorie</div>
                     </a>
                   </li>
                   <li class="menu-item">
-                    <a href="{{URL::to('/addproduct')}}" class="menu-link">
+                    <a href="{{route('addproduct')}}" class="menu-link">
                       <div data-i18n="Ajouter produit">Ajouter produit</div>
                     </a>
                   </li>
                   <li class="menu-item">
-                    <a href="{{URL::to('/addslider')}}" class="menu-link">
+                    <a href="{{route('addslider')}}" class="menu-link">
                       <div data-i18n="Ajouter slider">Ajouter slider</div>
                     </a>
                   </li>
@@ -149,25 +149,25 @@
                 </a>
                 <ul class="menu-sub">
                   <li class="menu-item">
-                    <a href="{{URL::to('/categories')}}" class="menu-link">
+                    <a href="{{route('categories')}}" class="menu-link">
                       <div data-i18n="Basic">Catégories</div>
                     </a>
                   </li>
                   <li class="menu-item">
-                    <a href="{{URL::to('/products')}}" class="menu-link">
+                    <a href="{{route('products')}}" class="menu-link">
                       <div data-i18n="Basic">Produits</div>
                     </a>
                   </li>
                   <li class="menu-item">
-                    <a href="{{URL::to('/sliders')}}" class="menu-link">
+                    <a href="{{route('sliders')}}" class="menu-link">
                       <div data-i18n="Basic">Sliders</div>
                     </a>
                   </li>
-                  <li class="menu-item">
-                    <a href="{{URL::to('/commandes')}}" class="menu-link">
+                  {{-- <li class="menu-item">
+                    <a href="{{route('commandes')}}" class="menu-link">
                       <div data-i18n="Basic">Commandes</div>
                     </a>
-                  </li>
+                  </li> --}}
                 </ul>
               </li>
 
@@ -183,7 +183,7 @@
               </li>
               <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                  <i class="menu-icon tf-icons bx bx-tool"></i>
+                  <i class="menu-icon tf-icons bx bx-user-badge"></i>
                   <div data-i18n="Account Settings">Account Settings</div>
                 </a>
                 <ul class="menu-sub">
@@ -308,7 +308,7 @@
                   <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                       <div class="avatar avatar-online">
-                        <img src="backoffice/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="{{asset('backoffice/assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle" />
                       </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -317,7 +317,7 @@
                           <div class="d-flex">
                             <div class="flex-shrink-0 me-3">
                               <div class="avatar avatar-online">
-                                <img src="backoffice/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                <img src="{{asset('backoffice/assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle" />
                               </div>
                             </div>
                             <div class="flex-grow-1">

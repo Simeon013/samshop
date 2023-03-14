@@ -43,7 +43,7 @@ class SliderController extends Controller
 
         $slider->save();
 
-        return redirect('/addslider')->with('status', 'Le slider a été ajouté avec succès.');
+        return redirect(route('addsliders'))->with('status', 'Le slider a été ajouté avec succès.');
 
     }
 
@@ -54,7 +54,7 @@ class SliderController extends Controller
     }
 
     public function editslider($id){
-        $slider = Slider::find($id);
+        $slider = Slider::findOrFail($id);
 
         return view('admin.editslider')->with('slider' , $slider);
     }
@@ -65,7 +65,7 @@ class SliderController extends Controller
                                     'slider_image' => 'image|nullable|max:1999']
     );
 
-        $slider = Slider::find($request->input('id'));
+        $slider = Slider::findOrFail($request->input('id'));
         $slider->description1 = $request->input('description1');
         $slider->description2 = $request->input('description2');
 
@@ -90,13 +90,13 @@ class SliderController extends Controller
         }
         $slider->update();
 
-        return redirect('/sliders')->with('status', 'Le slider ' . $slider->slider_name . ' a été modifié avec succès.');
+        return redirect(route('sliders'))->with('status', 'Le slider ' . $slider->slider_name . ' a été modifié avec succès.');
 
     }
 
     public function deleteslider($id){
 
-        $slider = Slider::find($id);
+        $slider = Slider::findOrFail($id);
 
         if($slider->slider_image != 'noimage.jpg'){
             Storage::delete('public/slider_images/'.$slider->slider_image);
@@ -104,26 +104,26 @@ class SliderController extends Controller
 
         $slider->delete();
 
-        return redirect('/sliders')->with('status', 'Le slider ' . $slider->slider_name . ' a été supprimé avec succès.');
+        return redirect(route('sliders'))->with('status', 'Le slider ' . $slider->slider_name . ' a été supprimé avec succès.');
     }
 
     public function activerslider($id){
-        $slider = Slider::find($id);
+        $slider = Slider::findOrFail($id);
 
         $slider->status = 1;
 
         $slider->update();
 
-        return redirect('/sliders')->with('status', 'Le slider ' . $slider->slider_name . ' a été activé avec succès.');
+        return redirect(route('sliders'))->with('status', 'Le slider ' . $slider->slider_name . ' a été activé avec succès.');
     }
 
     public function desactiverslider($id){
-        $slider = Slider::find($id);
+        $slider = Slider::findOrFail($id);
 
         $slider->status = 0;
 
         $slider->update();
 
-        return redirect('/sliders')->with('status', 'Le slider ' . $slider->slider_name . ' a été désactivé avec succès.');
+        return redirect(route('sliders'))->with('status', 'Le slider ' . $slider->slider_name . ' a été désactivé avec succès.');
     }
 }

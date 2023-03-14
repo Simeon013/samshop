@@ -64,7 +64,7 @@
                                         <img src="/storage/product_images/{{$product->product_image}}" class="w-px-50 h-px-50 rounded-circle avatar avatar-xs pull-up" data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="{{$product->product_name}}">
                                     </td>
                                     <td>{{$product->product_name}}</td>
-                                    <td>{{$product->product_category}}</td>
+                                    <td>{{$product->category->category_name}}</td>
                                     <td>{{$product->product_price}}F CFA</td>
                                     <td>
                                         @if ($product->status)
@@ -79,18 +79,18 @@
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" onclick="window.location ='{{URL('/editproduct/'.$product->id)}}'">
+                                                <a class="dropdown-item" onclick="window.location ='{{route('editproduct',$product->id)}}'">
                                                     <i class="bx bx-edit-alt me-1"></i> Editer
                                                 </a>
-                                                <a class="dropdown-item" href="{{('/deleteproduct/'.$product->id)}}" id="delete">
+                                                <a class="dropdown-item" href="{{route('deleteproduct',$product->id)}}" id="delete">
                                                     <i class="bx bx-trash me-1"></i> Suprimer
                                                 </a>
                                                 @if ($product->status == 1)
-                                                <a class="dropdown-item" onclick="window.location ='{{URL('/desactiverproduct/'.$product->id)}}'">
+                                                <a class="dropdown-item" onclick="window.location ='{{route('desactiverproduct',$product->id)}}'">
                                                     <i class="bx bx-x me-1"></i> Désactiver
                                                 </a>
                                                 @else
-                                                <a class="dropdown-item" onclick="window.location ='{{URL('/activerproduct/'.$product->id)}}'">
+                                                <a class="dropdown-item" onclick="window.location ='{{route('activerproduct',$product->id)}}'">
                                                     <i class="bx bx-check me-1"></i> Activer
                                                 </a>
                                                 @endif

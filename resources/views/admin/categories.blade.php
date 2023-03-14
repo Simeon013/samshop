@@ -19,7 +19,7 @@
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5 class="mb-0">Liste des catégories</h5>
                     <small class="text-muted float-end">
-                        <a href="{{URL::to('/addcategory')}}" class="btn rounded-pill btn-outline-primary">
+                        <a href="{{route('addcategory')}}" class="btn rounded-pill btn-outline-primary">
                             <span class="tf-icons bx bx-edit-alt"></span>&nbsp; Ajouter une catégorie
                         </a>
                     </small>
@@ -61,10 +61,10 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" id="edit" onclick="window.location ='{{URL('/editcategory/'.$category->id)}}'">
+                                        <a class="dropdown-item" id="edit" onclick="window.location ='{{route('editcategory', $category->id)}}'">
                                             <i class="bx bx-edit-alt me-1"></i> Editer
                                         </a>
-                                        <a class="dropdown-item" href="{{('/deletecategory/'.$category->id)}}" id="delete">
+                                        <a class="dropdown-item" href="{{route('deletecategory',$category->id)}}" id="delete">
                                             <i class="bx bx-trash me-1"></i> Suprimer
                                         </a>
                                     </div>

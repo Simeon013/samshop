@@ -39,7 +39,7 @@
 								</tr>
 
                                 @if (Session::has('cart'))
-								@foreach ($products as $product)
+								@foreach ($cart_products as $product)
                                     <tr class="table_row">
                                         <td class="column-1 product-remove"><a href="/retirer_produit/{{$product['product_id']}}"><span class="zmdi zmdi-close"></span></a></td>
                                         <td class="column-2">
@@ -101,7 +101,11 @@
 
 							<div class="size-209">
 								<span class="mtext-110 cl2">
-									$79.65
+									@if (Session::has('cart'))
+                                        {{Session::get('cart')->totalPrice}}F CFA
+                                    @else
+                                        0F CFA
+                                    @endif
 								</span>
 							</div>
 						</div>
