@@ -16,7 +16,7 @@ class ProductFactory extends Factory
         return [
             'product_name' => $this->faker->unique->word(),
             'product_price' => $this->faker->randomNumber(),
-            'product_image' => $this->faker->imageUrl(),
+            'product_image' => 'product_images/test.jpg',
             'status' => 1
         ];
     }

@@ -13,11 +13,49 @@ class ProductController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function addproduct(){
         $categories = Category::All();
         return view('admin.addproduct')->with('categories', $categories);
     }
+
+    // public function saveproduct(Request $request){
+    //     $this->validate($request, [ 'product_name' => 'required|unique:products',
+    //                                 'product_price' => 'required',
+    //                                 'category_id' => 'required',
+    //                                 'product_image' => 'image|nullable|max:1999']
+    //                             );
+
+    //     if($request->hasFile('product_image')){
+    //         //1 - get file name with extension
+    //         $fileNameWithExt = $request->file('product_image')->getClientOriginalName();
+    //         //2 - get just file name
+    //         $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+    //         //3 - get just file extension
+    //         $extension = $request->file('product_image')->getClientOriginalExtension();
+    //         //4 - file name to store
+    //         $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+
+    //         //uploader l'image
+    //         $path = $request->file('product_image')->storeAs('public/product_images', $fileNameToStore);
+    //     }
+    //     else{
+    //         $fileNameToStore = 'noimage.jpg';
+    //     }
+
+    //     $product = new Product();
+    //     $product->product_name = $request->input('product_name');
+    //     $product->product_price = $request->input('product_price');
+    //     $product->category_id = $request->input('category_id');
+    //     $product->product_image = $fileNameToStore;
+    //     $product->status = 1;
+
+    //     $product->save();
+
+    //     return redirect(route('addproduct'))->with('status', 'Le produit ' . $product->product_name . ' a été ajouté avec succès.');
+
+    //     // print($request->input('product_category'));
+    // }
 
     public function saveproduct(Request $request){
         $this->validate($request, [ 'product_name' => 'required|unique:products',
@@ -26,35 +64,26 @@ class ProductController extends Controller
                                     'product_image' => 'image|nullable|max:1999']
                                 );
 
-        if($request->hasFile('product_image')){
-            //1 - get file name with extension
-            $fileNameWithExt = $request->file('product_image')->getClientOriginalName();
-            //2 - get just file name
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            //3 - get just file extension
-            $extension = $request->file('product_image')->getClientOriginalExtension();
-            //4 - file name to store
-            $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+        $product_image = $request->product_image->store('product_images');
 
-            //uploader l'image
-            $path = $request->file('product_image')->storeAs('public/product_images', $fileNameToStore);
-        }
-        else{
-            $fileNameToStore = 'noimage.jpg';
-        }
+        Product::create([
+            'product_name' => $request->product_name,
+            'product_price' => $request->product_price,
+            'product_image' => $product_image,
+            'status' => 1
+            //'category_id' => $request->category_id
+        ]);
 
-        $product = new Product();
-        $product->product_name = $request->input('product_name');
-        $product->product_price = $request->input('product_price');
-        $product->category_id = $request->input('category_id');
-        $product->product_image = $fileNameToStore;
-        $product->status = 1;
+        // $product = new Product();
+        // $product->product_name = $request->input('product_name');
+        // $product->product_price = $request->input('product_price');
+        // $product->category_id = $request->input('category_id');
+        // $product->product_image = $product_image;
+        // $product->status = 1;
 
-        $product->save();
+        // $product->save();
 
-        return redirect(route('addproduct'))->with('status', 'Le produit ' . $product->product_name . ' a été ajouté avec succès.');
-
-        // print($request->input('product_category'));
+        return redirect(route('addproduct'))->with('status', 'Le produit a été ajouté avec succès.');
     }
 
     public function products(){

@@ -95,7 +95,9 @@
                                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                                         @auth
                                         <a href="">{{ Auth::user()->name }}</a>
-                                        <a href="{{ route('admin') }}">Administration</a>
+                                        @if (auth()->user()->admin == 1)
+                                            <a href="{{ route('admin') }}">Administration</a>
+                                        @endif
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
 
@@ -106,10 +108,10 @@
                                             </x-dropdown-link>
                                         </form>
                                         @else
-                                            <a href="{{ route('login') }}">Log in</a>
+                                            <a href="{{ route('login') }}">Connexion</a>
 
                                             @if (Route::has('register'))
-                                                <a href="{{ route('register') }}">Register</a>
+                                                <a href="{{ route('register') }}">Inscription</a>
                                             @endif
                                         @endauth
                                     </div>
