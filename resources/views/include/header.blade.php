@@ -91,9 +91,32 @@
                         <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 dropdown" >
 							<i onclick="myFunction()" class="dropbtn zmdi zmdi-account"></i>
                             <div id="myDropdown" class="dropdown-content">
-                                <a href="#">Link 1</a>
+                                @if (Route::has('login'))
+                                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                        @auth
+                                        <a href="">{{ Auth::user()->name }}</a>
+                                        <a href="{{ route('admin') }}">Administration</a>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+
+                                            <x-dropdown-link :href="route('logout')"
+                                                    onclick="event.preventDefault();
+                                                                this.closest('form').submit();">
+                                                {{ __('Déconnexion') }}
+                                            </x-dropdown-link>
+                                        </form>
+                                        @else
+                                            <a href="{{ route('login') }}">Log in</a>
+
+                                            @if (Route::has('register'))
+                                                <a href="{{ route('register') }}">Register</a>
+                                            @endif
+                                        @endauth
+                                    </div>
+                                @endif
+                                {{-- <a href="#">Link 1</a>
                                 <a href="#">Link 2</a>
-                                <a href="#">Link 3</a>
+                                <a href="#">Link 3</a> --}}
                             </div>
 						</div>
 					</div>

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function addproduct(){
         $categories = Category::All();
         return view('admin.addproduct')->with('categories', $categories);
@@ -64,7 +69,7 @@ class ProductController extends Controller
     }
 
     public function editproduct($id){
-        
+
         $product = Product::findOrFail($id);
 
         $categories = Category::All();

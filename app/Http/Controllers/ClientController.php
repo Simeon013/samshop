@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('home', 'about' , 'contact');
+    }
+
     public function home(){
         $oldCart = Session::has('cart')? Session::get('cart'):null;
         $cart = new Cart($oldCart);

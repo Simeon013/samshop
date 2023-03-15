@@ -21,19 +21,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/', 'App\Http\Controllers\ClientController@home')->name('home');
+
+Route::get('/home', 'App\Http\Controllers\ClientController@home')->name('home');
 Route::get('/apropos', 'App\Http\Controllers\ClientController@about')->name('about');
 Route::get('/contact', 'App\Http\Controllers\ClientController@contact')->name('contact');
 Route::get('/shop', 'App\Http\Controllers\ClientController@shop')->name('shop');
-Route::get('/connexion', 'App\Http\Controllers\ClientController@client_login')->name('login');
-Route::get('/deconnexion', 'App\Http\Controllers\ClientController@client_signup')->name('logout');
+// Route::get('/connexion', 'App\Http\Controllers\ClientController@client_login')->name('login');
+// Route::get('/deconnexion', 'App\Http\Controllers\ClientController@client_signup')->name('logout');
 Route::get('/panier', 'App\Http\Controllers\ClientController@cart')->name('cart');
 Route::get('/ajouter_au_panier/{id}','App\Http\Controllers\ClientController@add_to_cart')->name('add_to_cart');
 Route::get('/modifier_qty/{id} ', 'App\Http\Controllers\ClientController@update_cart');
 Route::get('/retirer_produit/{id}', 'App\Http\Controllers\ClientController@remove_to_cart')->name('remove_to_cart');
 
 Route::get('/admin', 'App\Http\Controllers\AdminController@dashboard')->name('admin');
-Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
+Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('tableau');
 
 Route::get('/admin/categories', 'App\Http\Controllers\CategoryController@categories')->name('categories');
 Route::get('/admin/categories/addcategory', 'App\Http\Controllers\CategoryController@addcategory')->name('addcategory');
@@ -59,3 +60,7 @@ Route::post('/admin/sliders/updateslider' , 'App\Http\Controllers\SliderControll
 Route::get('/admin/sliders/deleteslider/{id}' , 'App\Http\Controllers\SliderController@deleteslider')->name('deleteslider');
 Route::get('/admin/sliders/activerslider/{id}' , 'App\Http\Controllers\SliderController@activerslider')->name('activerslider');
 Route::get('/admin/sliders/desactiverslider/{id}' , 'App\Http\Controllers\SliderController@desactiverslider')->name('desactiverslider');
+
+
+
+require __DIR__.'/auth.php';
