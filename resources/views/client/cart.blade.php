@@ -20,6 +20,12 @@
 		</div>
 	</div>
 
+    @if (Session::has('status'))
+        <div class="alert alert-success" role="alert">
+            {{Session::get('status')}}
+        </div>
+    @endif
+
 
 	<!-- Shoping Cart -->
 	<form class="bg0 p-t-75 p-b-85">
@@ -87,7 +93,7 @@
 				</div>
 
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+					{{-- <div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 						<h4 class="mtext-109 cl2 p-b-30">
 							Cart Totals
 						</h4>
@@ -168,10 +174,10 @@
 							</div>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-							Proceed to Checkout
-						</button>
-					</div>
+					</div> --}}
+                    <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                        <a href="{{ route('checkout') }}">Proceed to Checkout</a>
+                    </button>
 				</div>
 			</div>
 		</div>

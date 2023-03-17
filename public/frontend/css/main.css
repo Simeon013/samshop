@@ -1136,10 +1136,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     cursor: pointer;
 }
 
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-    /* background-color: #2980B9; */
-}
+
 
 .dropdown {
     float: right;
