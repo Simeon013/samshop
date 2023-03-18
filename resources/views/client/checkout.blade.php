@@ -26,11 +26,16 @@
             {{Session::get('status')}}
         </div>
     @endif
+    @if (Session::has('error'))
+        <div class="alert alert-success" role="alert">
+            {{Session::get('status')}}
+        </div>
+    @endif
     @if (count($errors)>0)
                             <div class="alert alert-danger" role="alert">
                                 <ul>
                                     @foreach ($errors->all() as $error)
-                                        <li>Erreur: Cette catégorie existe déjà.</li>
+                                        <li>{{$error}}</li>
                                     @endforeach
                                 </ul>
                             </div>

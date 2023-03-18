@@ -5,7 +5,7 @@ use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Category;
 use App\Cart;
-
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -111,7 +111,7 @@ class ClientController extends Controller
             "description" => "Transaction for john.doe@example.com",
             "amount" => $cart->totalPrice,
             "currency" => ["iso" => "XOF"],
-            "callback_url" => route('checkout'),
+            "callback_url" => route('history'),
             "customer" => [
                 "firstname" => $request->firstname,
                 "lastname" => $request->lastname,
@@ -122,20 +122,75 @@ class ClientController extends Controller
                 ]
             ]
             ));
+
+            // $order = new Order();
+
+            // $order->client_name = $request->firstname . " " . $request->lastname;
+            // $order->payment_id = $transaction->id;
+            // $order->telephone = $request->number;
+            // $order->panier = serialize($cart);
+            // $order->montant = $transaction->amount;
+            // $order->status = $transaction->status;
+
+            // $order->save();
+
+            // dd($transaction->id);
             $token = $transaction->generateToken()->token;
             $mode = 'mtn'; // 'mtn', 'moov', 'mtn_ci', 'moov_tg'
             $transaction->sendNowWithToken($mode, $token);
             // $token = $transaction->generateToken();
-            return redirect($token->url);
+
+            // dd($order);
+
+            // return redirect($token->url);
             // return header('Location: ' . $token->url);
         }catch(\Exception $e){
             Session::put('error', $e->getMessage());
-            return redirect( route('checkout') );
+            return redirect( route('checkout') )->with('error' , $e->getMessage());
         }
+
+        $order = Order::create([
+            'client_name' => $request->firstname . " " . $request->lastname,
+            'payment_id' => $transaction->id,
+            'telephone' => $request->number,
+            'panier' => serialize($cart),
+            'montant' => $transaction->amount,
+            'status' => $transaction->status
+            //'category_id' => $request->category_id
+        ]);
+
+        // dd($order);
+
+        $orders = Order::get();
 
         Session::forget('cart');
         // Session::put('success', 'Purchase accomplished successfully !');
-        return redirect( route('cart') )->with('status' , 'Achat effectué avec succès');
+        return redirect( route('history') )->with('status' , 'Achat effectué avec succès')->with('orders' , $orders);
+    }
+
+    public function history(){
+        // if(!Session::has('cart')){
+        //     return view('client.cart');
+        // }
+
+
+        $orders = Order::get();
+
+        $orders->transform(function($order , $key){
+            $order->panier = unserialize($order->panier);
+            // dd($order);
+            return $order;
+        });
+
+        // \FedaPay\FedaPay::setApiKey("sk_sandbox_afrFW3F_L_6kQW_J8_18jD7Q");
+        // $transaction = \FedaPay\Transaction::retrieve($order->payment_id);
+        // $order->status = $transaction->status;
+        // // dd($order);
+        // $order->update();
+
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        return view('client.history', ['cart_products' => $cart->items])->with('orders', $orders);
     }
 
     public function about (){

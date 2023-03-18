@@ -1826,7 +1826,7 @@ button.mfp-close {
 
 
 /*//////////////////////////////////////////////////////////////////
-[ Num Product ]*/
+/* [ Num Product ]*/
 .wrap-num-product {
   width: 140px;
   height: 45px;
@@ -1860,7 +1860,7 @@ input.num-product::-webkit-outer-spin-button,
 input.num-product::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} */
 
 /*//////////////////////////////////////////////////////////////////
 [ Tolltip100 ]*/
@@ -2025,6 +2025,88 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .table-shopping-cart td {
+  font-family: Poppins-Regular;
+  color: #555;
+  line-height: 1.6;
+}
+
+/*[ Table History Cart ]*/
+
+.wrap-table-history-cart {
+  overflow: auto;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+}
+
+.table-history-cart {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 680px;
+}
+
+.table-history-cart tr {
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.table-history-cart .column-1 {
+  width: 10%;
+  padding-left: 15px;
+}
+
+.table-history-cart .column-2 {
+  width: 15%;
+  padding-left: 15px;
+}
+
+.table-history-cart .column-3 {
+  width: 20%;
+  font-size: 16px;
+  padding-left: 15px;
+  text-align: center;
+}
+
+.table-history-cart .column-4 {
+  width: 20%;
+  font-size: 16px;
+  text-align: center;
+}
+
+.table-history-cart .column-5 {
+    width: 10%;
+    text-align: center;
+  }
+
+.table-history-cart .column-6 {
+  width: 25%;
+  padding-right: 15px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.table-history-cart .table_row {
+  height: 185px;
+}
+
+.table-history-cart .table_row td {
+  padding-bottom: 20px;
+}
+
+.table-history-cart .table_row td.column-1 {
+  padding-bottom: 30px;
+}
+
+.table-history-cart .table_head th {
+  font-family: Poppins-Bold;
+  font-size: 13px;
+  color: #555;
+  text-transform: uppercase;
+  line-height: 1.6;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.table-history-cart td {
   font-family: Poppins-Regular;
   color: #555;
   line-height: 1.6;

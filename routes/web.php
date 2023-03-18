@@ -27,6 +27,7 @@ Route::get('/apropos', 'App\Http\Controllers\ClientController@about')->name('abo
 Route::get('/contact', 'App\Http\Controllers\ClientController@contact')->name('contact');
 Route::get('/shop', 'App\Http\Controllers\ClientController@shop')->name('shop');
 Route::get('/panier', 'App\Http\Controllers\ClientController@cart')->name('cart');
+Route::get('/historique', 'App\Http\Controllers\ClientController@history')->name('history');
 Route::get('/paiement', 'App\Http\Controllers\ClientController@checkout')->name('checkout');
 Route::post('/payer', 'App\Http\Controllers\ClientController@buy')->name('buy');
 Route::get('/ajouter_au_panier/{id}','App\Http\Controllers\ClientController@add_to_cart')->name('add_to_cart');

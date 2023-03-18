@@ -98,6 +98,7 @@
                                         @if (auth()->user()->admin == 1)
                                             <a href="{{ route('admin') }}">Administration</a>
                                         @endif
+                                        <a href="{{ route('history') }}">Historique</a>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
 
