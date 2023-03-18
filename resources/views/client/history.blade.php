@@ -1,5 +1,5 @@
 @section('title')
-    SamShop - Panier
+    SamShop - Historique
 @endsection
 
 @extends('layout.app1')
@@ -26,9 +26,18 @@
             {{Session::get('status')}}
         </div>
     @endif
+    @if (count($errors)>0)
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 
-	<!-- Shoping Cart -->
+	<!-- History Cart -->
     <div class="container">
         <div class="">
             <div class="m-b-50">
@@ -55,7 +64,7 @@
                                     </td>
                                     <td class="column-4">{{$order->Montant}} CFA</td>
                                     <td class="column-5">{{$order->created_at}}</td>
-                                    <td class="column-6"><button>Voir</button></td>
+                                    <td class="column-6"><button onclick="window.location ='{{route('voir_pdf', $order->id)}}'">Voir</button></td>
                                 </tr>
                                 {!! Form::hidden('', $increment= $increment+1) !!}
                             @endforeach

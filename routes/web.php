@@ -34,6 +34,8 @@ Route::get('/ajouter_au_panier/{id}','App\Http\Controllers\ClientController@add_
 Route::get('/modifier_qty/{id} ', 'App\Http\Controllers\ClientController@update_cart');
 Route::get('/retirer_produit/{id}', 'App\Http\Controllers\ClientController@remove_to_cart')->name('remove_to_cart');
 
+Route::get('/voir_pdf/{id}', 'App\Http\Controllers\PdfController@voir_pdf')->name('voir_pdf');
+
 Route::get('/admin', 'App\Http\Controllers\AdminController@dashboard')->name('admin');
 Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('tableau');
 

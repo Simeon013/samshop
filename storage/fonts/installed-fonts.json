@@ -1,0 +1,35 @@
+{
+    "poppins-regular": {
+        "normal": "poppins_regular_normal_5068508c6151e9f1918a159069765b30"
+    },
+    "poppins-light": {
+        "normal": "poppins_light_normal_1bed92516f3b3a696f04691db9a3e083"
+    },
+    "poppins-extralight": {
+        "normal": "poppins_extralight_normal_38831945660171a865a1aed6a2232e98"
+    },
+    "poppins-medium": {
+        "normal": "poppins_medium_normal_64b6653363e7bb626999445153e0fc58"
+    },
+    "poppins-italic": {
+        "normal": "poppins_italic_normal_a1534ff66dd5017d25a58c1d9af609de"
+    },
+    "poppins-bold": {
+        "normal": "poppins_bold_normal_e15303cc9b99acf033586e3995400375"
+    },
+    "poppins-semibold": {
+        "normal": "poppins_semibold_normal_81fdd8bae792fecf3625582a59d836f1"
+    },
+    "playfairdisplay-regular": {
+        "normal": "playfairdisplay_regular_normal_583867522645bed92290cdefff613724"
+    },
+    "playfairdisplay-bold": {
+        "normal": "playfairdisplay_bold_normal_3f817827cfdad1454023645833ae3cf8"
+    },
+    "montserrat-regular": {
+        "normal": "montserrat_regular_normal_fc2a6541b1520f88cc3a099403fe34f5"
+    },
+    "montserrat-bold": {
+        "normal": "montserrat_bold_normal_48f727b4b65087bc7ad9a2b9acd3af8a"
+    }
+}
