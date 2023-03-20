@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Cart;
+use App\Mail\FactureMail;
+use App\Models\Order;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Category;
-use App\Cart;
-use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
@@ -158,6 +160,17 @@ class ClientController extends Controller
             'status' => $transaction->status
             //'category_id' => $request->category_id
         ]);
+
+        $factureorders = Order::where('payment_id' , $transaction->id)->get();
+
+        $factureorders->transform(function($order , $key){
+            $order->panier = unserialize($order->panier);
+            // dd($order);
+            return $order;
+        });
+
+        $email = $request->email;
+        Mail::to($email)->send(new FactureMail($factureorders));
 
         // dd($order);
 

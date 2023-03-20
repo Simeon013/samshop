@@ -22,7 +22,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-Route::get('/home', 'App\Http\Controllers\ClientController@home')->name('home');
+Route::get('/', 'App\Http\Controllers\ClientController@home')->name('home');
 Route::get('/apropos', 'App\Http\Controllers\ClientController@about')->name('about');
 Route::get('/contact', 'App\Http\Controllers\ClientController@contact')->name('contact');
 Route::get('/shop', 'App\Http\Controllers\ClientController@shop')->name('shop');
