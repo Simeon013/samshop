@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 
 Route::get('/', 'App\Http\Controllers\ClientController@home')->name('home');
@@ -37,7 +37,7 @@ Route::get('/retirer_produit/{id}', 'App\Http\Controllers\ClientController@remov
 Route::get('/voir_pdf/{id}', 'App\Http\Controllers\PdfController@voir_pdf')->name('voir_pdf');
 
 Route::get('/admin', 'App\Http\Controllers\AdminController@dashboard')->name('admin');
-Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('tableau');
+Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
 
 Route::get('/admin/categories', 'App\Http\Controllers\CategoryController@categories')->name('categories');
 Route::get('/admin/categories/addcategory', 'App\Http\Controllers\CategoryController@addcategory')->name('addcategory');

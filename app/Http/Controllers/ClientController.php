@@ -24,8 +24,11 @@ class ClientController extends Controller
         $cart = new Cart($oldCart);
         $sliders = Slider::where('status', 1)->get();
         $categories = Category::get();
-        $products = Product::where('status' , 1)->get();
-        return view('client.home', ['cart_products' => $cart->items])->with('sliders', $sliders)->with('categories', $categories)->with('products', $products);
+        $products = Product::where('status' , 1)->orderBy('product_name', 'asc')->take(8)->get();
+        return view('client.home', ['cart_products' => $cart->items])
+                        ->with('sliders', $sliders)
+                        ->with('categories', $categories)
+                        ->with('products', $products);
     }
 
     public function shop(){
@@ -33,7 +36,9 @@ class ClientController extends Controller
         $cart = new Cart($oldCart);
         $categories = Category::get();
         $products = Product::where('status' , 1)->get();
-        return view('client.shop', ['cart_products' => $cart->items])->with('categories', $categories)->with('products',$products);
+        return view('client.shop', ['cart_products' => $cart->items])
+                        ->with('categories', $categories)
+                        ->with('products',$products);
     }
 
     public function cart(){
@@ -43,7 +48,9 @@ class ClientController extends Controller
 
         $oldCart = Session::has('cart')? Session::get('cart'):null;
         $cart = new Cart($oldCart);
-        return view('client.cart', ['cart_products' => $cart->items]);
+        $categories = Category::get();
+        return view('client.cart', ['cart_products' => $cart->items])
+                        ->with('categories', $categories);
     }
 
     public function add_to_cart($id){
@@ -82,13 +89,15 @@ class ClientController extends Controller
         }
 
         //dd(Session::get('cart'));
-        return redirect::to(route('cart'));
+        return back();
     }
 
     public function checkout (){
         $oldCart = Session::has('cart')? Session::get('cart'):null;
         $cart = new Cart($oldCart);
-        return view('client.checkout' , ['cart_products' => $cart->items]);
+        $categories = Category::get();
+        return view('client.checkout' , ['cart_products' => $cart->items])
+                    ->with('categories', $categories);
     }
 
     public function buy(Request $request){
@@ -98,7 +107,9 @@ class ClientController extends Controller
         $this->validate($request, [ 'firstname' => 'required',
                                     'lastname' => 'required',
                                     'email' => 'required',
-                                    'number' => 'required']
+                                    'number' => 'required',
+                                    'adress' => 'required',
+                                    'mode' => 'required']
                                 );
 
         /* Remplacez VOTRE_CLE_API par votre véritable clé API */
@@ -110,7 +121,7 @@ class ClientController extends Controller
         try {
             /* Créer la transaction */
             $transaction = \FedaPay\Transaction::create(array(
-            "description" => "Transaction for john.doe@example.com",
+            "description" => "Achat depuis BYA Trends",
             "amount" => $cart->totalPrice,
             "currency" => ["iso" => "XOF"],
             "callback_url" => route('history'),
@@ -138,7 +149,7 @@ class ClientController extends Controller
 
             // dd($transaction->id);
             $token = $transaction->generateToken()->token;
-            $mode = 'mtn'; // 'mtn', 'moov', 'mtn_ci', 'moov_tg'
+            $mode = $request->mode; // 'mtn', 'moov', 'mtn_ci', 'moov_tg'
             $transaction->sendNowWithToken($mode, $token);
             // $token = $transaction->generateToken();
 
@@ -182,12 +193,8 @@ class ClientController extends Controller
     }
 
     public function history(){
-        // if(!Session::has('cart')){
-        //     return view('client.cart');
-        // }
-
-
-        $orders = Order::get();
+        $user_id = auth()->user()->id;
+        $orders = Order::where('user_id', $user_id)->get();
 
         $orders->transform(function($order , $key){
             $order->panier = unserialize($order->panier);
@@ -203,15 +210,26 @@ class ClientController extends Controller
 
         $oldCart = Session::has('cart')? Session::get('cart'):null;
         $cart = new Cart($oldCart);
-        return view('client.history', ['cart_products' => $cart->items])->with('orders', $orders);
+        $categories = Category::get();
+        return view('client.history', ['cart_products' => $cart->items])
+                        ->with('orders', $orders)
+                        ->with('categories', $categories);
     }
 
     public function about (){
-        return view('client.about');
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $categories = Category::get();
+        return view('client.about', ['cart_products' => $cart->items])
+                        ->with('categories', $categories);
     }
 
     public function contact (){
-        return view('client.contact');
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $categories = Category::get();
+        return view('client.contact', ['cart_products' => $cart->items])
+                        ->with('categories', $categories);
     }
 
 }
