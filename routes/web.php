@@ -38,6 +38,12 @@ Route::get('/voir_pdf/{id}', 'App\Http\Controllers\PdfController@voir_pdf')->nam
 
 Route::get('/admin', 'App\Http\Controllers\AdminController@dashboard')->name('admin');
 Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
+Route::get('/admin/commandes', 'App\Http\Controllers\AdminController@orders')->name('orders');
+Route::get('/admin/users', 'App\Http\Controllers\AdminController@users')->name('users');
+Route::get('/admin/users/activeradmin/{id}' , 'App\Http\Controllers\AdminController@activeradmin')->name('activeradmin');
+Route::get('/admin/users/desactiveradmin/{id}' , 'App\Http\Controllers\AdminController@desactiveradmin')->name('desactiveradmin');
+Route::get('/admin/users/deleteuser/{id}' , 'App\Http\Controllers\AdminController@deleteuser')->name('deleteuser');
+
 
 Route::get('/admin/categories', 'App\Http\Controllers\CategoryController@categories')->name('categories');
 Route::get('/admin/categories/addcategory', 'App\Http\Controllers\CategoryController@addcategory')->name('addcategory');

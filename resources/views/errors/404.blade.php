@@ -14,7 +14,7 @@
 <!-- beautify ignore:start -->
 <html
   lang="fr"
-  class="light-style layout-menu-fixed"
+  class="light-style"
   dir="ltr"
   data-theme="theme-default"
   data-assets-path="{{asset('backoffice/assets/')}}"
@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>@yield('title')</title>
+    <title>Error - Page</title>
 
     <meta name="description" content="" />
 
@@ -53,10 +53,9 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{asset('backoffice/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
 
-    <link rel="stylesheet" href="{{asset('backoffice/assets/vendor/libs/apex-charts/apex-charts.css')}}" />
-
     <!-- Page CSS -->
-
+    <!-- Page -->
+    <link rel="stylesheet" href="{{asset('backoffice/assets/vendor/css/pages/page-misc.css')}}" />
     <!-- Helpers -->
     <script src="{{asset('backoffice/assets/vendor/js/helpers.js')}}"></script>
 
@@ -66,13 +65,38 @@
   </head>
 
   <body>
+    <!-- Content -->
 
-    @include('include.admin-header')
+    <!-- Error -->
+    <div class="container-xxl container-p-y">
+      <div class="misc-wrapper">
+        <h2 class="mb-2 mx-2">Page Not Found :(</h2>
+        <p class="mb-4 mx-2">Oops! 😖 The requested URL was not found on this server.</p>
+        <a href="{{route('home')}}" class="btn btn-primary">Back to home</a>
+        <div class="mt-3">
+          <img
+            src="{{asset('backoffice/assets/img/illustrations/page-misc-error-light.png')}}"
+            alt="page-misc-error-light"
+            width="500"
+            class="img-fluid"
+            data-app-dark-img="illustrations/page-misc-error-dark.png"
+            data-app-light-img="illustrations/page-misc-error-light.png"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- /Error -->
 
-    @yield('contenu')
+    <!-- / Content -->
 
-
-    @include('include.admin-footer')
+    {{-- <div class="buy-now">
+      <a
+        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
+        target="_blank"
+        class="btn btn-danger btn-buy-now"
+        >Upgrade to Pro</a
+      >
+    </div> --}}
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -85,32 +109,13 @@
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="{{asset('backoffice/assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 
     <!-- Main JS -->
     <script src="{{asset('backoffice/assets/js/main.js')}}"></script>
 
     <!-- Page JS -->
-    <script src="{{asset('backoffice/assets/js/dashboards-analytics.js')}}"></script>
-    <script src="{{asset('backoffice/assets/js/bootbox.min.js')}}"></script>
-
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-    @yield('scripts')
-
-    <script>
-        $(document).on("click", "#delete", function(e){
-            e.preventDefault();
-            var link = $(this).attr("href");
-            bootbox.confirm("Voullez-vous vraiment supprimer ce élement ?" , function(confirmed){
-                if(confirmed){
-                    window.location.href = link;
-                };
-            });
-        });
-    </script>
   </body>
 </html>
-

@@ -7,26 +7,28 @@
                       document.write(new Date().getFullYear());
                     </script>
                     , made with ❤️ by
-                    <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+                    <a href="#" target="_blank" class="footer-link fw-bolder">Siméon DAOUDA</a>
+                    &amp; ditribué par
+                            <a href="#" target="_blank" class="footer-link fw-bolder">LAYER-TEC</a>
                   </div>
-                  <div>
-                    <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                    <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+                  {{-- <div>
+                    <a href="#" class="footer-link me-4" target="_blank">License</a>
+                    <a href="#" target="_blank" class="footer-link me-4">More Themes</a>
 
                     <a
-                      href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                      href="#"
                       target="_blank"
                       class="footer-link me-4"
                       >Documentation</a
                     >
 
                     <a
-                      href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                      href="#"
                       target="_blank"
                       class="footer-link me-4"
                       >Support</a
                     >
-                  </div>
+                  </div> --}}
                 </div>
               </footer>
               <!-- / Footer -->

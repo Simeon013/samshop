@@ -56,20 +56,24 @@
                         </h4>
 
                         <p class="stext-107 cl7 size-201">
-                            Des questions? Faites-le nous savoir en magasin au 8ème étage, 379 Hudson St, New York, NY 10018 ou appelez-nous au (+1) 96 716 6879
+                            Des questions? Faites-le nous savoir au (+229) 61418980
                         </p>
 
                         <div class="p-t-27">
-                            <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <a href="https://www.facebook.com/profile.php?id=100070015101976&mibextid=ZbWKwL" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
                                 <i class="fa fa-facebook"></i>
                             </a>
 
-                            <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            {{-- <a href="https://vm.tiktok.com/ZMYxCBMUf/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
                                 <i class="fa fa-instagram"></i>
+                            </a> --}}
+
+                            <a href="https://www.snapchat.com/add/nabichou091?share_id=MTLSS9R5h2E&locale=fr-FR" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                                <i class="fa fa-snapchat"></i>
                             </a>
 
-                            <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                                <i class="fa fa-pinterest-p"></i>
+                            <a href="https://wa.me/22961418980" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                                <i class="fa fa-whatsapp"></i>
                             </a>
                         </div>
                     </div>

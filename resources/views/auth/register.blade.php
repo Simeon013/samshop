@@ -43,7 +43,7 @@
     />
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="{{asset('backoffice/assets/vendor/fonts/boxicons.css')}}" />
+    <link rel="stylesheet" href="{{asset('all/favicon.png')}}" />
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{asset('backoffice/assets/vendor/css/core.css')}}" class="template-customizer-core-css" />

@@ -26,8 +26,8 @@
 							byatrends@gmail.com
 						</a>
 
-						<a href="tel:+22990431956" class="flex-c-m trans-04 p-lr-25">
-							+22990431956
+						<a href="tel:+22961418980" class="flex-c-m trans-04 p-lr-25">
+							+22961418980
 						</a>
 					</div>
 				</div>
@@ -209,8 +209,8 @@
                         <a href="mailto:byatrends@gmail.com" class="flex-c-m p-lr-10 trans-04">
 							byatrends@gmail.com
 						</a>
-                        <a href="tel:+22990431956" class="flex-c-m p-lr-10 trans-04">
-							+22990431956
+                        <a href="tel:+22961418980" class="flex-c-m p-lr-10 trans-04">
+							+22961418980
 						</a>
 					</div>
 				</li>

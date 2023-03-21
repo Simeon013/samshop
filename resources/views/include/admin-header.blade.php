@@ -5,8 +5,8 @@
 
           <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
-              <a href="index.html" class="app-brand-link">
-                <span class="app-brand-logo demo">
+              <a href="{{route('home')}}" class="app-brand-link">
+                {{-- <span class="app-brand-logo demo">
                   <svg
                     width="25"
                     viewBox="0 0 25 42"
@@ -60,9 +60,9 @@
                       </g>
                     </g>
                   </svg>
-                </span>
-                <span class="app-brand-text demo menu-text fw-bolder ms-2">SamShop</span>
-              </a>
+                </span> --}}
+                <span class="app-brand-logo demo"><img src="{{asset('all/BYA-0.png')}}" alt="" width="150"></span>
+            </a>
 
               <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
                 <i class="bx bx-chevron-left bx-sm align-middle"></i>
@@ -163,11 +163,11 @@
                       <div data-i18n="Basic">Sliders</div>
                     </a>
                   </li>
-                  {{-- <li class="menu-item">
-                    <a href="{{route('commandes')}}" class="menu-link">
+                  <li class="menu-item">
+                    <a href="{{route('orders')}}" class="menu-link">
                       <div data-i18n="Basic">Commandes</div>
                     </a>
-                  </li> --}}
+                  </li>
                 </ul>
               </li>
 
@@ -176,7 +176,7 @@
               <li class="menu-header small text-uppercase"><span class="menu-header-text">Profil</span></li>
               <!-- Cards -->
               <li class="menu-item">
-                <a href="cards-basic.html" class="menu-link">
+                <a href="#" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-user"></i>
                   <div data-i18n="Basic">Mon profil</div>
                 </a>
@@ -188,17 +188,17 @@
                 </a>
                 <ul class="menu-sub">
                   <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
+                    <a href="#" class="menu-link">
                       <div data-i18n="Account">Account</div>
                     </a>
                   </li>
                   <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                    <a href="#" class="menu-link">
                       <div data-i18n="Notifications">Notifications</div>
                     </a>
                   </li>
                   <li class="menu-item">
-                    <a href="pages-account-settings-connections.html" class="menu-link">
+                    <a href="#" class="menu-link">
                       <div data-i18n="Connections">Connections</div>
                     </a>
                   </li>
@@ -212,15 +212,15 @@
                 </a>
                 <ul class="menu-sub">
                   <li class="menu-item">
-                    <a href="ui-accordion.html" class="menu-link">
-                      <div data-i18n="Accordion">Ajouter un utilisateur</div>
+                    <a href="{{route('users')}}" class="menu-link">
+                      <div data-i18n="Accordion">Liste des utilisateurs</div>
                     </a>
                   </li>
-                  <li class="menu-item">
-                    <a href="ui-alerts.html" class="menu-link">
+                  {{-- <li class="menu-item">
+                    <a href="{{route('logout')}}" class="menu-link">
                       <div data-i18n="Alerts">Deconnecter</div>
                     </a>
-                  </li>
+                  </li> --}}
                 </ul>
               </li>
 
@@ -229,7 +229,7 @@
               <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
               <li class="menu-item">
                 <a
-                  href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                  href="#"
                   target="_blank"
                   class="menu-link"
                 >
@@ -239,7 +239,7 @@
               </li>
               <li class="menu-item">
                 <a
-                  href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                  href="#"
                   target="_blank"
                   class="menu-link"
                 >
@@ -249,7 +249,7 @@
               </li>
               <li class="menu-item">
                 <a
-                  href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                  href="#"
                   target="_blank"
                   class="menu-link"
                 >
@@ -295,7 +295,7 @@
                   <li class="nav-item lh-1 me-3">
                     <a
                       class="github-button"
-                      href="https://github.com/themeselection/sneat-html-admin-template-free"
+                      href="#"
                       data-icon="octicon-star"
                       data-size="large"
                       data-show-count="true"
@@ -308,7 +308,7 @@
                   <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                       <div class="avatar avatar-online">
-                        <img src="{{asset('backoffice/assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="{{asset('all/user.png')}}" alt class="w-px-40 h-auto rounded-circle" />
                       </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -317,11 +317,11 @@
                           <div class="d-flex">
                             <div class="flex-shrink-0 me-3">
                               <div class="avatar avatar-online">
-                                <img src="{{asset('backoffice/assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle" />
+                                <img src="{{asset('all/user.png')}}" alt class="w-px-40 h-auto rounded-circle" />
                               </div>
                             </div>
                             <div class="flex-grow-1">
-                              <span class="fw-semibold d-block">John Doe</span>
+                              <span class="fw-semibold d-block">{{Auth::user()->name}}</span>
                               <small class="text-muted">Admin</small>
                             </div>
                           </div>
@@ -330,7 +330,7 @@
                       <li>
                         <div class="dropdown-divider"></div>
                       </li>
-                      <li>
+                      {{-- <li>
                         <a class="dropdown-item" href="#">
                           <i class="bx bx-user me-2"></i>
                           <span class="align-middle">My Profile</span>
@@ -353,12 +353,22 @@
                       </li>
                       <li>
                         <div class="dropdown-divider"></div>
-                      </li>
+                      </li> --}}
                       <li>
-                        <a class="dropdown-item" href="auth-login-basic.html">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('logout')" class="dropdown-item"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    <i class="bx bx-power-off me-2"></i>
+                                    <span class="align-middle">Déconnexion</span>
+                                </x-dropdown-link>
+                            </form>
+                        {{-- <a class="dropdown-item">
                           <i class="bx bx-power-off me-2"></i>
                           <span class="align-middle">Log Out</span>
-                        </a>
+                        </a> --}}
                       </li>
                     </ul>
                   </li>
